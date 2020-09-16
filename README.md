@@ -27,7 +27,7 @@ no se mostrará nada.
 
           <dependency>
             <groupId>org.webjars</groupId>
-            <artifactId>webjars-locator</artifactId>
+            <aCree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del nombre del cine, un campo de captura tipo fecha, botón de 'Get Functions', campodonde se mostrará el nombre del cine seleccionado, la tabla HTML donde se mostrará el listado de funciones (con sólo los encabezados). Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.rtifactId>webjars-locator</artifactId>
           </dependency>
 
           <dependency>
@@ -44,6 +44,33 @@ no se mostrará nada.
           
 ### Parte II - Front-End - Vistas
 
+1. Cree el directorio donde residirá la aplicación JavaScript. Como se está usando SpringBoot, la ruta para poner en el mismo contenido estático (páginas Web estáticas, aplicaciones HTML5/JS, etc) es:
+
+        src/main/resources/static
+        
+2. Cree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del nombre del cine, un campo de captura tipo fecha, botón de 'Get Functions', campodonde se mostrará el nombre del cine seleccionado, [la tabla HTML](https://www.w3schools.com/html/html_tables.asp) donde se mostrará el listado de funciones (con sólo los encabezados). Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.
+
+3. En el elemento <head> de la página, agregue las referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap.
+  
+        <head>
+          <title>Cinema bookings</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <script src="/webjars/jquery/jquery.min.js"></script>
+          <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <link rel="stylesheet"
+            href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        </head> 
+        
+4. Suba la aplicación (mvn spring-boot:run), y rectifique:
+
+     1. Que la página sea accesible desde:
+     
+             http://localhost:8080/index.html
+             
+     2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
+
+### Parte III - Front-End - Lógica
 1. Ahora, va a crear un Módulo JavaScript que, a manera de controlador, mantenga los estados y ofrezca las operaciones requeridas por la vista. Para esto tenga en cuenta el patrón Módulo de JavaScript, y cree un módulo en la ruta static/js/app.js .
 
 2. Copie el módulo provisto (apimock.js) en la misma ruta del módulo antes creado. En éste agréguele más planos (con más puntos) a los autores 'quemados' en el código.
@@ -62,7 +89,7 @@ no se mostrará nada.
     * El listado de nombre, género y hora de las películas de las funciones del cine seleccionado. Es decir, una lista objetos, donde cada objeto tendrá tres propiedades:
     nombre de la película, género de la misma y hora de la función.
     
-Junto con dos operaciones públicas, una que permita cambiar el nombre del cinema actualmente seleccionado y otra que permita cambiar la fecha.
+    Junto con dos operaciones públicas, una que permita cambiar el nombre del cinema actualmente seleccionado y otra que permita cambiar la fecha.
 
 5. Agregue al módulo 'app.js' una operación pública que permita actualizar el listado de las funciones,esto, a partir del nombre del cine y la fecha de la función (dados como parámetro). Para hacerlo, dicha operación debe invocar la operación 'getFunctionsByCinemaAndDate' del módulo 'apimock' provisto, enviándole como callback una función que:
 

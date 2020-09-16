@@ -26,21 +26,21 @@ no se mostrará nada.
 2. Incluya dentro de las dependencias de Maven los 'webjars' de jQuery y Bootstrap (esto permite tener localmente dichas librerías de JavaScript al momento de construír el proyecto):
 
           <dependency>
-            <groupId>org.webjars</groupId>
-            <aCree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del nombre del cine, un campo de captura tipo fecha, botón de 'Get Functions', campodonde se mostrará el nombre del cine seleccionado, la tabla HTML donde se mostrará el listado de funciones (con sólo los encabezados). Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.rtifactId>webjars-locator</artifactId>
+              <groupId>org.webjars</groupId>
+              <artifactId>webjars-locator</artifactId>
           </dependency>
 
           <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>3.3.7</version>
+              <groupId>org.webjars</groupId>
+              <artifactId>bootstrap</artifactId>
+              <version>3.3.7</version>
           </dependency>
 
           <dependency>
               <groupId>org.webjars</groupId>
               <artifactId>jquery</artifactId>
               <version>3.1.0</version>
-          </dependency>    
+          </dependency>   
           
 ### Parte II - Front-End - Vistas
 

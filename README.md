@@ -67,6 +67,8 @@ no se mostrará nada.
      1. Que la página sea accesible desde:
      
              http://localhost:8080/index.html
+			 
+		![](HeavyClientCINEMA/img/pagina1.png)
              
      2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
 

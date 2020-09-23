@@ -1,15 +1,16 @@
-var app = (function (){
+app = (function (){
 
     var _cinema;
     var _date;
     var _functions;
+    var _module = "js/apimock.js";
 
     function _setCinemaName(cinema) {
         _cinema = cinema;
     };
 
     function _setDate(date) {
-        _date = date;
+        _date = date.substring(0, 10);
     };
 
     function _updateFunctionsData(functions){
@@ -23,8 +24,8 @@ var app = (function (){
     function _updateTableData(){
         $("#functionsTable > tbody").empty()
         _functions.map(function (movie) {
-            var onClick = "app.openSeats(\""+movie.hour+"\")";
-            var btn = "<button class='btn btn-outline-primary' value='Open Seats' onclick=" + onClick + ">Open seats</input>";
+            var btn = "<button class='btn btn-outline-primary' value='Open Seats' onclick = 'app.openSeats(\"" + movie.movieName +'" , "' +
+                    movie.hour +"\")'>Open Seats</button>";
             var fila = '<tr><td>' + movie.movieName + '</td><td>' + movie.genre + '</td><td>' + movie.hour + '</td><td>' + btn + '</tr>';
             $("#functionsTable > tbody").append(fila)
         })
@@ -37,37 +38,40 @@ var app = (function (){
         document.getElementById('functions').style.visibility = "visible";
     }
 
-    function _updateSeats(functions){
-        _clearCanvasSeats();
-        $("#availabilityOf").text("Availability of: "+ functions[0].movie.name);
-        var seats = functions[0].seats;
-        var c = document.getElementById("seatsCanvas");
-        var ctx = c.getContext("2d");
-        ctx.fillStyle = "#000000";
-        ctx.fillRect(c.width*0.2, c.height*0.05, c.width*0.6, c.height*0.075);
-        var x = c.width * 0.1; var y = c.height * 0.20;
-        var w = (c.width) * 0.8; var h = (c.height) * 0.75;
-        var l;
-        if (w < h){
-            l = w*0.8/seats[0].length;
-        }else{
-            l = h*0.8/seats.length;
-        }
-        var dx = (w - (l*seats[0].length)) / seats[0].length;
-        var dy = (h - (l*seats.length)) /seats.length;
+    function _updateSeats(f){
+        if (f != null) {
+            _clearCanvasSeats();
+            $("#availabilityOf").text("Availability of: "+ f.movie.name);
+            document.getElementById('Availability').style.visibility = "visible";
+            var seats = f.seats;
+            var c = document.getElementById("seatsCanvas");
+            var ctx = c.getContext("2d");
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(c.width*0.2, c.height*0.05, c.width*0.6, c.height*0.075);
+            var x = c.width * 0.1; var y = c.height * 0.20;
+            var w = (c.width) * 0.8; var h = (c.height) * 0.75;
+            var l;
+            if (w < h){
+                l = w*0.8/seats[0].length;
+            }else{
+                l = h*0.8/seats.length;
+            }
+            var dx = (w - (l*seats[0].length)) / seats[0].length;
+            var dy = (h - (l*seats.length)) /seats.length;
 
-        seats.map(function (row){
-            x = c.width * 0.1;
-            row.map(function (seat){
-                ctx.fillStyle = "#333842";
-                if (!seat){
-                    ctx.fillStyle = "#B40431";
-                }
-                ctx.fillRect(x, y, l, l);
-                x = x + l + dx;
-            })
-            y = y + l + dy;
-        })
+            seats.map(function (row){
+                x = c.width * 0.1;
+                row.map(function (seat){
+                    ctx.fillStyle = "#333842";
+                    if (!seat){
+                        ctx.fillStyle = "#B40431";
+                    }
+                    ctx.fillRect(x, y, l, l);
+                    x = x + l + dx;
+                })
+                y = y + l + dy;
+            });
+        }
     }
 
     function _clearCanvasSeats(){
@@ -80,14 +84,22 @@ var app = (function (){
 
     return{
         updateFunctions: function (cinema, date){
-            _setCinemaName(cinema);
-            _setDate(date);
-            apimock.getFunctionsByCinemaAndDate(cinema, date, _updateFunctionsData);
+            if (cinema === "" || date === ""){
+                alert("El nombre del cinema y la fecha son requeridos");
+            }else{
+                _setCinemaName(cinema);
+                _setDate(date);
+                $.getScript(_module, function(){
+                    api.getFunctionsByCinemaAndDate(cinema, date, _updateFunctionsData);
+                });
+            }
         },
 
-        openSeats(hour){
-            apimock.getFunctionsByCinemaAndDate(_cinema,_date+" "+hour, _updateSeats);
+        openSeats: function (movieName, hour){
+            $.getScript(_module, function(){
+                api.getFunctionByCinemaMovieAndDate(_cinema,_date+" "+hour, movieName, _updateSeats);
+            });
         }
     }
-
+    
 })();

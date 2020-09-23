@@ -1,4 +1,4 @@
-apimock = (function () {
+api = (function () {
 
     var seats = [[true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true], [true, true, true, true, true, true, true, true, true, true, true, true]];
     var mockdata = [];
@@ -19,8 +19,13 @@ apimock = (function () {
                     mockdata[cinema_name].functions.filter(
                     funct => funct.date.includes(fdate))
             );
+        },
+        getFunctionByCinemaMovieAndDate: function (cinema_name, fdate, movie_name, callback) {
+            var data = mockdata[cinema_name].functions.filter(
+                funct => funct.date.includes(fdate));
+            var funcion = data.find(element => element.movie.name == movie_name);
+            callback(funcion);
         }
-
     }
 
 })();

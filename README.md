@@ -4,9 +4,25 @@
   
 ## Compile and Run Instructions
 
+
+   Es necesario tener instalado [maven](https://maven.apache.org/ "maven") en el equipo que se desee correr el programa. Abra la consola y ubiquese donde desea tener este
+   proyecto, inserte el comando `git clone https://github.com/angipaola10/LAB5-ARSW` para clonar el proyecto en su computador, se creará la carpera **/LAB5-ARSW**
+
+   * **Compilar**
+     
+       Estando en la consola, ingrese a la carpeta **/LAB4-ARSW/HeavyClientCINEMA**  y ejecute el comando `mvn clean compile` para compilar el programa
+       
+	 ![compile](HeavyClientCINEMA/img/compile.png)
+
+   * **Ejecutar**
+      
+       Luego de compilar el programa, en la misma ubicación inserte el comando de ejecución `mvn spring-boot:run`
+	 
+	 ![run](HeavyClientCINEMA/img/run.png) 
+
 ## Heavy client - Cinema Book System
 
-![](HeavyClientCINEMA/img/mock_.png)
+![mock](HeavyClientCINEMA/img/mock_.png)
 
 ### Descripción y objetivos
 
@@ -68,11 +84,11 @@ no se mostrará nada.
      
              http://localhost:8080/index.html
 			 
-		![](HeavyClientCINEMA/img/pagina1.png)
+		![pag](HeavyClientCINEMA/img/pagina1.png)
              
      2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
 
-		![](HeavyClientCINEMA/img/pagina2.png)
+		![pag](HeavyClientCINEMA/img/pagina2.png)
 		
 ### Parte III - Front-End - Lógica
 
@@ -107,13 +123,13 @@ no se mostrará nada.
 
 7. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un cine existente, y una fecha en donde estén agendadas funciones, se cargue el listado de funciones del mismo.
 
-	![](HeavyClientCINEMA/img/pagina3.png)
+	![pag](HeavyClientCINEMA/img/pagina3.png)
 	
 ### Parte IV
 
 1. A la página, agregue un [elemento de tipo Canvas](https://www.w3schools.com/html/html5_canvas.asp), con su respectivo identificador. Haga que sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, pero lo suficiente para poder visualizar cómodamente los asientos de la sala.
 
-	![](HeavyClientCINEMA/img/pagina4.png)
+	![pag](HeavyClientCINEMA/img/pagina4.png)
 
 2. Al módulo app.js agregue una operación que, dado el nombre de un cine, la fecha (con hora de la función "yyyy-mm-dd hh:mm"), y el nombre de la película dados como parámetros, haciendo uso del método getFunctionsByCinemaAndDate de apimock.js y de una función callback:
 
@@ -123,12 +139,14 @@ no se mostrará nada.
     
 3. Verifique que la aplicación ahora, además de mostrar el listado de las funciones del cine, permita seleccionar una de éstas y graficar su disponibilidad. Para esto, haga que en las filas generadas para el punto 5 incluyan en la última columna un botón con su evento de clic asociado a la operación hecha anteriormente (enviándo como parámetro los nombres correspondientes).
 
-	![](HeavyClientCINEMA/img/pagina5.png)
-
 4. Verifique que la aplicación ahora permita: consultar las funciones de un cine y graficar la disponibilidad de asientos de aquella que se seleccione.
+
+	![pag](HeavyClientCINEMA/img/pagina5.png)
 
 5. Una vez funcione la aplicación (sólo front-end), haga un módulo (llámelo 'apiclient') que tenga las mismas operaciones del 'apimock', pero que para las mismas use datos reales consultados del API REST. Para lo anterior revise [cómo hacer peticiones GET con jQuery](https://api.jquery.com/jquery.get/), y cómo se maneja el esquema de callbacks en este contexto.
 
 6. Modifique el código de app.js de manera que sea posible cambiar entre el 'apimock' y el 'apiclient' con sólo una línea de código.
 
 7. Revise la [documentación y ejemplos de los estilos de Bootstrap](https://v4-alpha.getbootstrap.com/examples/) (ya incluidos en el ejercicio), agregue los elementos necesarios a la página para que sea más vistosa, y más cercana al mock dado al inicio del enunciado.
+
+	![pag](HeavyClientCINEMA/img/pagina6.png)

@@ -10,7 +10,7 @@
 
    * **Compilar**
      
-       Estando en la consola, ingrese a la carpeta **/LAB4-ARSW/HeavyClientCINEMA**  y ejecute el comando `mvn clean compile` para compilar el programa
+       Estando en la consola, ingrese a la carpeta **/LAB5-ARSW/HeavyClientCINEMA**  y ejecute el comando `mvn clean compile` para compilar el programa
        
 	 ![compile](HeavyClientCINEMA/img/compile.png)
 
